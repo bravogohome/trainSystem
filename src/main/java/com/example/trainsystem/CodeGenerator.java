@@ -52,7 +52,7 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.150.129:3306/railwaydb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://192.168.150.130:3306/railwaydb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");

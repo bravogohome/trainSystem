@@ -5,6 +5,7 @@ package com.example.trainsystem.entity;
     import java.io.Serializable;
     import lombok.Data;
     import lombok.EqualsAndHashCode;
+    import lombok.Getter;
     import lombok.experimental.Accessors;
 
 /**
@@ -16,7 +17,7 @@ package com.example.trainsystem.entity;
 * @since 2021-06-06
 */
     @Data
-        @EqualsAndHashCode(callSuper = false)
+    @EqualsAndHashCode(callSuper = false)
     @Accessors(chain = true)
     public class Stations implements Serializable {
 
@@ -30,6 +31,5 @@ package com.example.trainsystem.entity;
     private Integer traincode1;
 
     private Integer traincode2;
-
 
 }

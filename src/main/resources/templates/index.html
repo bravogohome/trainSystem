@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>message:</h1>
+    <h1 th:text="${message}" th:if="${not #strings.isEmpty(message)}"/>
+    <form  th:action="@{/stations/addStation}" method="get">
+        <input type="text" name="stationname"/>
+        <input type="submit" value="添加车站"/><br>
+    </form>
+    <hr>
+    <form th:action="@{/stations/findAllStation}" method="get">
+        <input type="submit" value="所有车站"/><br>
+        <table>
+            <thead>
+            <tr>
+                <th>stationid</th>
+                <th>车站名</th>
+                <th>车次code1</th>
+                <th>车次code2</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="station : ${stationList}">
+                    <td th:text="${station.getStationid()}"></td>
+                    <td th:text="${station.getStationname()}"></td>
+                    <td th:text="${station.getTraincode1()}"></td>
+                    <td th:text="${station.getTraincode2()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    <form th:action="@{/routes/findRouteByTrainnum}" method="get">
+        <input type="text" name="trainnum"/>
+        <input type="submit" value="查找线路"/>
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>车站名</th>
+                <th>进站时间</th>
+                <th>出站时间</th>
+                <th>停留时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="route : ${routeList}">
+                <td th:text="${route.getRoutenum()}"></td>
+                <td th:text="${stationlist[route.getRoutenum()-1]}"></td>
+                <td th:text="${route.getStarttime()}"></td>
+                <td th:text="${route.getStoptime()}"></td>
+                <td th:text="${route.getStaytime()}+'分'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    <form th:action="@{/routes/createRoute}" method="get">
+        添加路线：<br>
+        <table>
+            <thead>
+            <tr>
+                <th>车次名</th>
+                <th>站名</th>
+                <th>进站时间</th>
+                <th>停留时间</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="trainnum"/>
+                    <td><input type="text" name="stationname"/></td>
+                    <td><input type="text" name="stoptime"/></td>
+                    <td><input type="text" name="staytime"/></td>
+                    <td><input type="submit" value="添加"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    <form th:action="@{/trains/searchTrains}" method="get">
+        查询车次：<br>
+        起点站：<input type="text" name="startStation"/><br>
+        终点站：<input type="text" name="endStation"/><br>
+        出发时间：<input type="text" name="selectDate"/><br>
+        <input type="submit" value="查找">
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>车次名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="train : ${trainList}">
+                <td th:text="${trainList.indexOf(train)+1}" th:if="${not #strings.isEmpty(train)}"></td>
+                <td th:text="${train.getTrainnum()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+    <form th:action="@{/stations/findTrainOfStation}" method="get">
+        车站车次查询：<br>
+        车站名：<input type="text" name="stationname"/><br>
+        <input type="submit" value="查询"/>
+        <table>
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>车次名</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="train : ${trainnumList}">
+                <td th:text="${trainnumList.indexOf(train)+1}" th:if="${not #strings.isEmpty(train)}"></td>
+                <td th:text="${train}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <hr>
+</body>
+</html>

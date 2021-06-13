@@ -1,0 +1,27 @@
+server:
+  port: 8062
+
+#DataSource Config
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    check-template-location: true  #check-tempate-location: \u68C0\u67E5\u6A21\u677F\u8DEF\u5F84\u662F\u5426\u5B58\u5728
+    cache: true  #cache: \u662F\u5426\u7F13\u5B58\uFF0C\u5F00\u53D1\u6A21\u5F0F\u4E0B\u8BBE\u7F6E\u4E3Afalse\uFF0C\u907F\u514D\u6539\u4E86\u6A21\u677F\u8FD8\u8981\u91CD\u542F\u670D\u52A1\u5668\uFF0C\u7EBF\u4E0A\u8BBE\u7F6E\u4E3Atrue\uFF0C\u53EF\u4EE5\u63D0\u9AD8\u6027\u80FD\u3002
+    suffix: .html
+      #encoding: UTF-8
+    #content-type: text/html
+    mode: HTML
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.150.130:3306/railwaydb?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 111111
+
+  freemarker:
+    suffix: ftl
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    map-underscore-to-camel-case: false
+
